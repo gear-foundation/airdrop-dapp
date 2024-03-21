@@ -7,9 +7,9 @@ import { useApi } from '@gear-js/react-hooks';
 function Component() {
   const { isApiReady } = useApi();
 
-  // if (!isApiReady) {
-  //   return <>!isApiReady</>;
-  // }
+  if (!isApiReady) {
+    return <>!isApiReady</>;
+  }
 
   return (
     <>
