@@ -5,7 +5,7 @@ import { useModal } from '@/hooks/use-modal';
 
 import { AccountButton } from '../account-button';
 import { WalletModal } from '../wallet-modal';
-import { useState } from '@/app/hooks/use-read-state';
+import { useState, useStateAirdrop } from '@/app/hooks/use-read-state';
 
 import style from './wallet.module.scss'
 
@@ -19,7 +19,7 @@ function Wallet() {
       {account ? (
         <>
           <div className={style.token}>
-            <h2>{state?.totalSupply}</h2>
+            <h2>{state?.balances.find((balance: any) => balance[0] === account.decodedAddress)[1]}</h2>
             <h2>{state?.symbol}</h2>
           </div>
           <AccountButton color="dark" address={account.address} name={account.meta.name} onClick={openModal} />

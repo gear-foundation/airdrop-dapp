@@ -5,6 +5,7 @@ import { useReadState } from '.';
 import { ENV } from '../сonsts';
 import { useProgramMetadata } from './api';
 import { useSendMessageHandler } from '@gear-js/react-hooks';
+import { useMemo } from 'react';
 
 export const programIdState = ENV.CONTRACT;
 export const programIdAirdrop = ENV.AIRDROP;
@@ -19,10 +20,22 @@ export function useState() {
 	return { state };
 }
 
+export function useStateAirdrop() {
+	const payloadAllState = useMemo(() => ({ GetClaimers: null }), []);
+
+	const { state: claimers } = useReadState<any>({
+		programId: programIdAirdrop,
+		meta: metaAirdrop,
+		payload: payloadAllState,
+	});
+
+	return { claimers };
+}
+
 export function useStateMessage() {
 	const metadata = useProgramMetadata(metaAirdrop);
 	return useSendMessageHandler(programIdAirdrop, metadata, {
-		disableAlerts: true,
+		disableAlerts: false,
 		isMaxGasLimit: true,
 	});
 }
