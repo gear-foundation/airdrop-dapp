@@ -17,7 +17,11 @@ export default defineConfig({
   plugins: [
     react(),
     nodePolyfills(),
-    svgr(),
+    svgr({ 
+      svgrOptions: {
+        
+      },
+    }),
     // checker({
     //   typescript: true,
     //   eslint: { lintCommand: 'eslint "./src/**/*.{ts,tsx}"', dev: { logLevel: ['error'] } },

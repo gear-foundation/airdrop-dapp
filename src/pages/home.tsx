@@ -8,10 +8,11 @@ export const Home = () => {
 	const { account } = useAccount()
 	const handleMessage = useStateMessage()
 	const { claimers } = useStateAirdrop()
-	const claimAccount = claimers?.Claimers.find((claimer: any) => claimer.address === account?.decodedAddress)
+	const claimAccount = claimers?.Claimers.find((claimer: any) => claimer[0] === account?.decodedAddress)
 
 	return (
 		<Container>
+			{claimAccount && <h1 style={{ marginBottom: 10 }}>Available balance: {claimAccount[1]}</h1>}
 			{claimAccount ?
 				<Button
 					disabled={!claimAccount}

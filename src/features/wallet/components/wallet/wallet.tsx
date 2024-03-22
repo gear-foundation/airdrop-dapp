@@ -8,6 +8,7 @@ import { WalletModal } from '../wallet-modal';
 import { useState, useStateAirdrop } from '@/app/hooks/use-read-state';
 
 import style from './wallet.module.scss'
+import { VaraBalance } from '../vara-balance';
 
 function Wallet() {
   const { account, isAccountReady } = useAccount();
@@ -22,6 +23,7 @@ function Wallet() {
             <h2>{state?.balances.find((balance: any) => balance[0] === account.decodedAddress)?.[1]}</h2>
             <h2>{state?.symbol}</h2>
           </div>
+          <VaraBalance />
           <AccountButton color="dark" address={account.address} name={account.meta.name} onClick={openModal} />
         </>
       ) : (
