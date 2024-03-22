@@ -19,7 +19,7 @@ function Wallet() {
       {account ? (
         <>
           <div className={style.token}>
-            <h2>{state?.balances.find((balance: any) => balance[0] === account.decodedAddress)[1]}</h2>
+            <h2>{state?.balances.find((balance: any) => balance[0] === account.decodedAddress)?.[1]}</h2>
             <h2>{state?.symbol}</h2>
           </div>
           <AccountButton color="dark" address={account.address} name={account.meta.name} onClick={openModal} />
